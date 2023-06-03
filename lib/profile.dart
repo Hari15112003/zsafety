@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:womensafety/apiconnection/login.dart';
+import 'package:womensafety/login_cred/login_signin.dart';
+import 'package:womensafety/main.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -38,7 +41,7 @@ class _ProfileState extends State<Profile> {
                 child: Padding(
                   padding: EdgeInsets.all(50),
                   child: CircleAvatar(
-                    // backgroundImage: ,
+                    backgroundImage: AssetImage("assets/images/profile.jpg"),
                     radius: height * 0.08,
                   ),
                 ),
@@ -64,7 +67,8 @@ class _ProfileState extends State<Profile> {
               GestureDetector(
                 onTap: () {
                   // Signout
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => myApp()));
                 },
                 child: Center(
                   child: Row(

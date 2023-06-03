@@ -414,7 +414,9 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniStartDocked,
+      body: Stack(
         children: [
           // TextFormField(
           //   controller: searchController,
@@ -428,34 +430,43 @@ class _MapScreenState extends State<MapScreen> {
           //     ),
           //   ),
           // ),
-          Expanded(
-            child: GoogleMap(
-              mapType: maptype,
-              onMapCreated: (GoogleMapController controller) {
-                mapController = controller;
-                if (currentPosition != null) {
-                  _updateLocation(currentPosition!);
-                }
-              },
-              initialCameraPosition: CameraPosition(
-                target: LatLng(12.907480446916093, 77.56616413602141),
-                // currentPosition != null
-                //     ? LatLng(
-                //         currentPosition!.latitude, currentPosition!.longitude)
-                //     : LatLng(0, 0),
-                zoom: 8,
-              ),
-              markers: markers,
-              polylines: {
-                Polyline(
-                  polylineId: PolylineId('path'),
-                  points: pathPoints,
-                  color: Colors.blue,
-                  width: 3,
-                ),
-              },
+          GoogleMap(
+            mapType: maptype,
+            onMapCreated: (GoogleMapController controller) {
+              mapController = controller;
+              if (currentPosition != null) {
+                _updateLocation(currentPosition!);
+              }
+            },
+            initialCameraPosition: CameraPosition(
+              target: LatLng(12.907480446916093, 77.56616413602141),
+              // currentPosition != null
+              //     ? LatLng(
+              //         currentPosition!.latitude, currentPosition!.longitude)
+              //     : LatLng(0, 0),
+              zoom: 8,
             ),
+            markers: markers,
+            polylines: {
+              Polyline(
+                polylineId: PolylineId('path'),
+                points: pathPoints,
+                color: Colors.blue,
+                width: 3,
+              ),
+            },
           ),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  if (maptype == MapType.normal) {
+                    maptype = MapType.hybrid;
+                  } else {
+                    maptype = MapType.normal;
+                  }
+                });
+              },
+              icon: Icon(Icons.map))
         ],
       ),
       floatingActionButton: FloatingActionButton(

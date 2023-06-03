@@ -258,21 +258,27 @@ class _login_signinState extends State<login_signin> {
                 },
                 child: Align(
                   alignment: Alignment.center,
-                  child: Container(
-                    width: width * 0.6,
-                    padding: EdgeInsets.symmetric(vertical: height * 0.01),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.grey),
-                        color: Colors.white),
-                    child: Center(
-                      child: Text(
-                        !todo ? 'Signin' : 'Login',
-                        style: TextStyle(
-                            fontSize: width * 0.05,
-                            letterSpacing: 2,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => home()));
+                    },
+                    child: Container(
+                      width: width * 0.6,
+                      padding: EdgeInsets.symmetric(vertical: height * 0.01),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.white),
+                      child: Center(
+                        child: Text(
+                          !todo ? 'Signin' : 'Login',
+                          style: TextStyle(
+                              fontSize: width * 0.05,
+                              letterSpacing: 2,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        ),
                       ),
                     ),
                   ),
